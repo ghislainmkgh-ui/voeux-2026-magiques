@@ -1458,6 +1458,32 @@
             }
         `;
         document.head.appendChild(style);
+
+        // Démarrer la musique au premier clic/touch
+        let musicStarted = false;
+        function startMusic() {
+            if (!musicStarted) {
+                const audio = document.getElementById('bgMusic');
+                audio.muted = false;
+                audio.play().catch(e => console.log('Autoplay bloqué:', e));
+                musicStarted = true;
+            }
+        }
+        
+        // Écouter le premier clic n'importe où sur la page
+        document.addEventListener('click', startMusic, { once: true });
+        document.addEventListener('touchstart', startMusic, { once: true });
+        
+        // Tenter de démarrer automatiquement
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const audio = document.getElementById('bgMusic');
+                audio.play().catch(() => {
+                    // Si bloqué, attendre l'interaction utilisateur
+                    console.log('Autoplay bloqué - en attente du premier clic');
+                });
+            }, 500);
+        });
     </script>
 </body>
 </html>
