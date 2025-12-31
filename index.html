@@ -986,7 +986,9 @@
                 </div>
                 
                 <div class="music-player">
-                    <audio id="bgMusic" controls autoplay muted loop></audio>
+                    <audio id="bgMusic" controls autoplay loop>
+                        <source src="Bonne_Année_2026_-_Carte_virtuelle_#voeux2026(256k).mp3" type="audio/mpeg">
+                    </audio>
                 </div>
                 <p id="musicStatus" style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.7);"></p>
             </div>
@@ -1149,7 +1151,6 @@
                     // Charger dans le lecteur
                     const audio = document.getElementById('bgMusic');
                     audio.src = audioData;
-                    audio.muted = false; // Retirer le mute
                     audio.volume = 0.3;
                     
                     audio.play().then(() => {
@@ -1410,12 +1411,11 @@
                         statusElement.style.color = '#feca57';
                     });
                 } else {
-                    // Musique par défaut
-                    audio.src = 'https://cdn.pixabay.com/audio/2022/03/10/audio_d1718372d8.mp3';
+                    // Musique par défaut du projet
+                    audio.src = 'Bonne_Année_2026_-_Carte_virtuelle_#voeux2026(256k).mp3';
                     audio.volume = 0.3;
-                    audio.muted = false;
                     audio.play().catch(() => {
-                        statusElement.textContent = '🎵 Musique par défaut - Cliquez pour jouer';
+                        statusElement.textContent = '🎵 Cliquez pour démarrer la musique';
                         statusElement.style.color = '#feca57';
                     });
                 }
