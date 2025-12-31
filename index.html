@@ -1389,6 +1389,7 @@
                 // Charger depuis fichier local
                 audio.src = musicData;
                 audio.volume = 0.3;
+                audio.muted = false;
                 document.getElementById('fileName').textContent = '📄 ' + musicFileName;
                 document.getElementById('fileName').style.color = '#00f2fe';
                 audio.play().catch(() => {
@@ -1403,8 +1404,18 @@
                     audio.src = musicUrl;
                     musicInput.value = musicUrl;
                     audio.volume = 0.3;
+                    audio.muted = false;
                     audio.play().catch(() => {
                         statusElement.textContent = '🔇 Cliquez sur play pour démarrer la musique';
+                        statusElement.style.color = '#feca57';
+                    });
+                } else {
+                    // Musique par défaut
+                    audio.src = 'https://cdn.pixabay.com/audio/2022/03/10/audio_d1718372d8.mp3';
+                    audio.volume = 0.3;
+                    audio.muted = false;
+                    audio.play().catch(() => {
+                        statusElement.textContent = '🎵 Musique par défaut - Cliquez pour jouer';
                         statusElement.style.color = '#feca57';
                     });
                 }
