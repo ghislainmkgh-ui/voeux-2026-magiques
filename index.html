@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bonne Année 2026 - Vœux Magiques ✨</title>
+    <script src="https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Dancing+Script:wght@700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --gradient-2: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-gold: linear-gradient(135deg, #ffd89b 0%, #ff8008 100%);
+            --gradient-rose: linear-gradient(135deg, #ff6b9d 0%, #c471f5 100%);
+            --gradient-rainbow: linear-gradient(90deg, #ff6b9d, #feca57, #48dbfb, #ff9ff3, #54a0ff, #ff6b9d);
+            --glass-bg: rgba(255, 255, 255, 0.12);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --text-light: #ffffff;
+            --text-soft: #f0f8ff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: #0a0a0f;
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Fond animé avec particules magiques */
+        .bg-animation { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            z-index: 0;
+            background: linear-gradient(135deg, #1a0033 0%, #0f0f23 50%, #2d1b69 100%);
+        }
+        
+        .circle { 
+            position: absolute; 
+            border-radius: 50%; 
+            filter: blur(100px);
+            animation: float 30s infinite ease-in-out;
+            opacity: 0.7;
+        }
+        .circle:nth-child(1) { width: 500px; height: 500px; top: -15%; left: -10%; background: radial-gradient(circle, #667eea, transparent); animation-delay: 0s; }
+        .circle:nth-child(2) { width: 450px; height: 450px; top: 50%; right: -15%; background: radial-gradient(circle, #f093fb, transparent); animation-delay: 8s; }
+        .circle:nth-child(3) { width: 400px; height: 400px; bottom: -10%; left: 25%; background: radial-gradient(circle, #00f2fe, transparent); animation-delay: 16s; }
+        .circle:nth-child(4) { width: 350px; height: 350px; top: 25%; right: 35%; background: radial-gradient(circle, #ffd89b, transparent); animation-delay: 4s; }
+        .circle:nth-child(5) { width: 300px; height: 300px; bottom: 30%; right: 10%; background: radial-gradient(circle, #ff6b9d, transparent); animation-delay: 12s; }
+        
+        @keyframes float { 
+            0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 0.6; } 
+            25% { transform: translate(80px, -80px) scale(1.15) rotate(90deg); opacity: 0.9; }
+            50% { transform: translate(-50px, 60px) scale(0.85) rotate(180deg); opacity: 0.7; }
+            75% { transform: translate(60px, 50px) scale(1.1) rotate(270deg); opacity: 0.8; }
+        }
+
+        /* Particules flottantes */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: particle-rise 15s infinite ease-in;
+        }
+        
+        @keyframes particle-rise {
+            0% { 
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(-100vh) translateX(100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Conteneur principal */
+        .container { 
+            position: relative;
+            z-index: 1;
+            max-width: 700px; 
+            margin: 0 auto; 
+            padding: 2rem; 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center;
+        }
+        
+        .glass-card { 
+            background: var(--glass-bg); 
+            backdrop-filter: blur(40px) saturate(200%); 
+            -webkit-backdrop-filter: blur(40px) saturate(200%);
+            border: 2px solid var(--glass-border); 
+            border-radius: 40px; 
+            padding: 3.5rem 3rem; 
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2); 
+            animation: cardEnter 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        @keyframes cardEnter { 
+            0% { 
+                opacity: 0; 
+                transform: translateY(100px) scale(0.9) rotateX(20deg); 
+            } 
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) scale(1) rotateX(0deg); 
+            } 
+        }
+
+        /* Titre magnifique 2026 */
+        .title { 
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(3.5rem, 12vw, 6rem); 
+            text-align: center; 
+            background: var(--gradient-rainbow);
+            background-size: 300% 300%;
+            -webkit-background-clip: text; 
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem; 
+            animation: rainbow-flow 6s ease-in-out infinite, glow-pulse 3s ease-in-out infinite alternate, title-bounce 2s ease-out;
+            font-weight: 800;
+            letter-spacing: 8px;
+            text-shadow: 0 0 30px rgba(255, 107, 157, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+        
+        @keyframes rainbow-flow {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 50% 100%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 0%; }
+        }
+        
+        @keyframes glow-pulse { 
+            from { 
+                filter: drop-shadow(0 0 30px rgba(255,107,157,0.8)) 
+                        drop-shadow(0 0 60px rgba(102,126,234,0.6)); 
+            } 
+            to { 
+                filter: drop-shadow(0 0 50px rgba(255,107,157,1)) 
+                        drop-shadow(0 0 100px rgba(102,126,234,0.9)); 
+            } 
+        }
+        
+        @keyframes title-bounce {
+            0% { transform: scale(0.5) translateY(-50px); opacity: 0; }
+            60% { transform: scale(1.1); }
+            80% { transform: scale(0.95); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Subtitle avec animation */
+        .subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--text-soft);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeSlideIn 2s 0.5s forwards;
+            position: relative;
+            z-index: 2;
+        }
+        
+        @keyframes fadeSlideIn { 
+            from { 
+                opacity: 0; 
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+
+        /* Photo avec effets circulaires époustouflants */
+        .photo-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 3rem auto;
+            width: 220px;
+            height: 220px;
+        }
+        
+        .photo-rings {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 3px solid transparent;
+            animation: pulse-ring 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        
+        .ring:nth-child(1) {
+            width: 115%;
+            height: 115%;
+            border-color: rgba(255, 107, 157, 0.8);
+            box-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
+            animation-delay: 0s;
+        }
+        
+        .ring:nth-child(2) {
+            width: 135%;
+            height: 135%;
+            border-color: rgba(102, 126, 234, 0.7);
+            box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+            animation-delay: 1.3s;
+        }
+        
+        .ring:nth-child(3) {
+            width: 160%;
+            height: 160%;
+            border-color: rgba(0, 242, 254, 0.6);
+            box-shadow: 0 0 40px rgba(0, 242, 254, 0.4);
+            animation-delay: 2.6s;
+        }
+        
+        .ring:nth-child(4) {
+            width: 185%;
+            height: 185%;
+            border-color: rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+            animation-delay: 3.9s;
+        }
+        
+        @keyframes pulse-ring {
+            0% { 
+                transform: translate(-50%, -50%) scale(0.7); 
+                opacity: 1;
+                border-width: 5px;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+                border-width: 2px;
+            }
+            100% { 
+                transform: translate(-50%, -50%) scale(0.7); 
+                opacity: 1;
+                border-width: 5px;
+            }
+        }
+        
+        .sender-photo { 
+            position: relative;
+            z-index: 3;
+            width: 200px; 
+            height: 200px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 6px solid rgba(255, 255, 255, 0.95); 
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 
+                        0 0 0 15px rgba(255, 107, 157, 0.3),
+                        0 0 0 30px rgba(102, 126, 234, 0.2),
+                        inset 0 0 20px rgba(255, 255, 255, 0.1); 
+            animation: photo-magic 5s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .sender-photo:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 35px 100px rgba(0, 0, 0, 0.8), 
+                        0 0 0 20px rgba(255, 107, 157, 0.5),
+                        0 0 0 40px rgba(102, 126, 234, 0.3),
+                        0 0 60px rgba(255, 215, 0, 0.5);
+        }
+        
+        @keyframes photo-magic { 
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg); 
+                filter: brightness(1) saturate(100%);
+            } 
+            25% {
+                transform: translateY(-15px) rotate(-3deg);
+                filter: brightness(1.1) saturate(110%);
+            }
+            50% { 
+                transform: translateY(-20px) rotate(0deg); 
+                filter: brightness(1.15) saturate(120%);
+            }
+            75% {
+                transform: translateY(-15px) rotate(3deg);
+                filter: brightness(1.1) saturate(110%);
+            }
+        }
+        
+        .sender-info { 
+            display: none; 
+            text-align: center;
+            animation: fadeIn 2s ease-out;
+        }
+        
+        .sender-name { 
+            font-size: 2rem; 
+            font-weight: 700; 
+            background: var(--gradient-rose);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-top: 1.5rem;
+            animation: name-glow 2s ease-in-out infinite alternate;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes name-glow {
+            from { filter: drop-shadow(0 0 10px rgba(255, 107, 157, 0.5)); }
+            to { filter: drop-shadow(0 0 25px rgba(255, 107, 157, 1)); }
+        }
+
+        /* Formulaire ultra moderne */
+        .recipient-form { 
+            text-align: center; 
+        }
+        
+        .form-group { 
+            margin-bottom: 2.5rem; 
+        }
+        
+        label { 
+            display: block; 
+            font-weight: 600; 
+            margin-bottom: 1rem; 
+            color: var(--text-soft); 
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            animation: fadeIn 2s ease-out;
+        }
+        
+        input[type="text"] { 
+            width: 100%; 
+            padding: 1.3rem 2rem; 
+            background: rgba(255, 255, 255, 0.08); 
+            border: 2px solid rgba(255, 255, 255, 0.2); 
+            border-radius: 25px; 
+            color: var(--text-light); 
+            font-size: 1.15rem; 
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        input[type="text"]:focus { 
+            outline: none; 
+            box-shadow: 0 0 40px rgba(255, 107, 157, 0.6),
+                        0 0 80px rgba(102, 126, 234, 0.4); 
+            border-color: rgba(255, 107, 157, 1);
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px) scale(1.02);
+        }
+        
+        input[type="text"]::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 300;
+        }
+        
+        /* Textarea pour message personnalisé */
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 1.3rem 2rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            resize: vertical;
+            line-height: 1.8;
+        }
+        
+        textarea:focus {
+            outline: none;
+            box-shadow: 0 0 40px rgba(255, 107, 157, 0.6),
+                        0 0 80px rgba(102, 126, 234, 0.4);
+            border-color: rgba(255, 107, 157, 1);
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px) scale(1.01);
+        }
+        
+        textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 300;
+        }
+
+        /* Upload photo simplifié et attractif */
+        .photo-upload-container {
+            position: relative;
+            margin: 2rem auto;
+            width: 200px;
+            height: 200px;
+        }
+        
+        .photo-upload-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 4px dashed rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .photo-upload-label::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 107, 157, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .photo-upload-label:hover::before {
+            opacity: 1;
+        }
+        
+        .photo-upload-label:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 107, 157, 1);
+            border-style: solid;
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 50px rgba(255, 107, 157, 0.5),
+                        0 0 60px rgba(102, 126, 234, 0.3);
+        }
+        
+        .photo-upload-icon {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+            animation: icon-bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes icon-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .photo-upload-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            padding: 0 1.5rem;
+            font-weight: 500;
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        #photoPreview {
+            display: none;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border: 6px solid rgba(255, 255, 255, 0.95);
+            box-shadow: 0 15px 60px rgba(0, 0, 0, 0.6);
+            animation: photo-appear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        @keyframes photo-appear {
+            from {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+        
+        .photo-preview-active .photo-upload-icon,
+        .photo-preview-active .photo-upload-text {
+            display: none;
+        }
+        
+        .photo-preview-active #photoPreview {
+            display: block;
+        }
+        
+        .photo-preview-active .photo-upload-label {
+            border: none;
+        }
+
+        /* Boutons spectaculaires */
+        .btn { 
+            padding: 1.4rem 3.5rem; 
+            background: var(--gradient-rose); 
+            color: #fff; 
+            border: none; 
+            border-radius: 60px; 
+            font-weight: 700; 
+            font-size: 1.2rem; 
+            cursor: pointer; 
+            position: relative; 
+            overflow: hidden; 
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); 
+            margin: 1.5rem 0.5rem; 
+            box-shadow: 0 20px 50px rgba(255, 107, 157, 0.5),
+                        0 0 30px rgba(255, 107, 157, 0.3);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn::before { 
+            content: ''; 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            width: 0; 
+            height: 0; 
+            border-radius: 50%; 
+            background: rgba(255, 255, 255, 0.4); 
+            transform: translate(-50%, -50%); 
+            transition: width 0.8s, height 0.8s;
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.7s;
+        }
+        
+        .btn:hover::before { 
+            width: 500px; 
+            height: 500px; 
+        }
+        
+        .btn:hover::after {
+            left: 100%;
+        }
+        
+        .btn:hover { 
+            transform: translateY(-10px) scale(1.08); 
+            box-shadow: 0 30px 80px rgba(255, 107, 157, 0.8),
+                        0 0 60px rgba(255, 107, 157, 0.6),
+                        0 0 100px rgba(102, 126, 234, 0.4); 
+        }
+        
+        .btn:active { 
+            transform: translateY(-5px) scale(1.05); 
+        }
+        
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Message de vœux avec animation */
+        .wishes { 
+            text-align: center; 
+            font-size: 1.35rem; 
+            line-height: 2; 
+            margin-top: 2.5rem; 
+            opacity: 0; 
+            animation: fadeIn 2s 1s forwards, wishes-glow 3s ease-in-out infinite alternate; 
+            color: var(--text-soft);
+            font-weight: 400;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.1), rgba(102, 126, 234, 0.1));
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .wishes::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            animation: wishes-shine 4s infinite;
+        }
+        
+        @keyframes wishes-shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        @keyframes wishes-glow {
+            from {
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3),
+                           0 0 20px rgba(255, 107, 157, 0.2),
+                           inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            }
+            to {
+                box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4),
+                           0 0 40px rgba(255, 107, 157, 0.4),
+                           0 0 60px rgba(102, 126, 234, 0.3),
+                           inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            }
+        }
+        
+        .wishes-custom {
+            white-space: pre-line;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .wishes strong {
+            background: var(--gradient-rainbow);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rainbow-flow 4s ease-in-out infinite;
+            font-weight: 700;
+        }
+        
+        .wishes em {
+            font-style: italic;
+            color: #feca57;
+            font-weight: 500;
+        }
+
+        /* Section partage pro */
+        .share-section {
+            display: none;
+            margin-top: 2.5rem;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: slideUp 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .share-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow-pulse 2s ease-in-out infinite alternate;
+        }
+        
+        .share-link { 
+            background: rgba(0, 0, 0, 0.4); 
+            padding: 1.5rem; 
+            border-radius: 20px; 
+            margin: 1.5rem 0; 
+            word-break: break-all; 
+            color: #4facfe; 
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            border: 1px solid rgba(74, 172, 254, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .share-link:hover {
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 15px 40px rgba(74, 172, 254, 0.3);
+        }
+
+        /* Admin panel moderne */
+        .admin-panel {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 25px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .admin-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .admin-panel input[type="url"] {
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-panel input[type="url"]:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        .music-player {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+        }
+        
+        audio {
+            width: 100%;
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        /* Tablettes et petits ordinateurs portables */
+        @media (max-width: 1024px) {
+            .container { padding: 1.5rem; }
+            .glass-card { padding: 2.5rem 2rem; }
+        }
+        
+        /* Tablettes portrait */
+        @media (max-width: 768px) { 
+            .container { padding: 1.5rem 1rem; }
+            .glass-card { padding: 2.5rem 1.8rem; border-radius: 30px; } 
+            .title { font-size: 3.5rem; letter-spacing: 4px; } 
+            .subtitle { font-size: 1.2rem; }
+            .sender-photo { width: 170px; height: 170px; }
+            .photo-container { width: 190px; height: 190px; }
+            .photo-upload-container { width: 170px; height: 170px; }
+            .btn { padding: 1.2rem 2.5rem; font-size: 1rem; letter-spacing: 1.5px; }
+            .wishes { font-size: 1.2rem; padding: 1.5rem; }
+            .share-link { font-size: 0.85rem; padding: 1.2rem; }
+            .admin-panel { padding: 1.5rem; }
+            input[type="text"], input[type="url"] { font-size: 1rem; padding: 1.1rem 1.5rem; }
+        }
+        
+        /* Smartphones paysage */
+        @media (max-width: 640px) {
+            .container { padding: 1rem; }
+            .glass-card { padding: 2rem 1.5rem; border-radius: 25px; }
+            .title { font-size: 3rem; letter-spacing: 3px; }
+            .subtitle { font-size: 1.1rem; margin-bottom: 2rem; }
+            .sender-photo { width: 160px; height: 160px; }
+            .photo-container { width: 180px; height: 180px; }
+            .photo-upload-container { width: 160px; height: 160px; }
+            .btn { padding: 1.1rem 2rem; font-size: 0.95rem; margin: 1rem 0.3rem; }
+            .wishes { font-size: 1.15rem; line-height: 1.8; padding: 1.2rem; }
+            label { font-size: 1rem; }
+        }
+        
+        /* Smartphones portrait */
+        @media (max-width: 480px) { 
+            body { font-size: 14px; }
+            .container { padding: 0.8rem; }
+            .glass-card { padding: 1.8rem 1.2rem; border-radius: 20px; }
+            .title { font-size: 2.5rem; letter-spacing: 2px; margin-bottom: 0.3rem; }
+            .subtitle { font-size: 1rem; margin-bottom: 1.5rem; }
+            .sender-photo { width: 140px; height: 140px; border-width: 4px; }
+            .photo-container { width: 160px; height: 160px; margin: 2rem auto; }
+            .photo-upload-container { width: 140px; height: 140px; }
+            .photo-upload-icon { font-size: 2.5rem; }
+            .photo-upload-text { font-size: 0.85rem; }
+            .sender-name { font-size: 1.5rem; margin-top: 1rem; }
+            .btn { 
+                padding: 1rem 1.8rem; 
+                font-size: 0.85rem; 
+                margin: 0.8rem 0.2rem;
+                letter-spacing: 1px;
+                border-radius: 50px;
+            }
+            .wishes { font-size: 1.05rem; line-height: 1.7; padding: 1rem; margin-top: 1.5rem; }
+            .share-section, .admin-panel { padding: 1.5rem 1rem; margin-top: 1.5rem; }
+            .share-title, .admin-title { font-size: 1.3rem; }
+            .share-link { font-size: 0.75rem; padding: 1rem; word-break: break-all; }
+            input[type="text"], input[type="url"] { 
+                font-size: 0.95rem; 
+                padding: 1rem 1.2rem;
+                border-radius: 20px;
+            }
+            label { font-size: 0.95rem; margin-bottom: 0.8rem; }
+            .form-group { margin-bottom: 1.8rem; }
+            .ring { border-width: 2px; }
+        }
+        
+        /* Très petits écrans */
+        @media (max-width: 360px) {
+            .glass-card { padding: 1.5rem 1rem; }
+            .title { font-size: 2.2rem; letter-spacing: 1px; }
+            .subtitle { font-size: 0.9rem; }
+            .sender-photo { width: 120px; height: 120px; }
+            .photo-container { width: 140px; height: 140px; }
+            .photo-upload-container { width: 120px; height: 120px; }
+            .btn { padding: 0.9rem 1.5rem; font-size: 0.8rem; }
+            .wishes { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <!-- Particules animées -->
+    <div class="particles" id="particles"></div>
+
+    <div class="container">
+        <div class="glass-card">
+            <h1 class="title">2026</h1>
+            <p class="subtitle">✨ <span id="senderPreview" style="background: var(--gradient-rose); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;"></span> ✨</p>
+
+            <!-- Affichage des vœux reçus -->
+            <div id="senderInfo" class="sender-info">
+                <div class="photo-container">
+                    <div class="photo-rings">
+                        <div class="ring"></div>
+                        <div class="ring"></div>
+                        <div class="ring"></div>
+                        <div class="ring"></div>
+                    </div>
+                    <img id="senderPhoto" class="sender-photo" alt="Photo">
+                </div>
+                <div id="senderName" class="sender-name"></div>
+                <div class="wishes" id="wishesMessage">
+                    <!-- Le message sera inséré dynamiquement ici -->
+                </div>
+            </div>
+
+            <!-- Formulaire pour créer des vœux -->
+            <div id="recipientForm" class="recipient-form">
+                <div class="form-group">
+                    <label>✨ Votre Nom</label>
+                    <input type="text" id="userName" placeholder="Entrez votre nom..." required>
+                </div>
+                
+                <div class="form-group">
+                    <label>📸 Votre Photo (Optionnel)</label>
+                    <div class="photo-upload-container" id="photoUploadContainer">
+                        <label for="userPhoto" class="photo-upload-label">
+                            <div class="photo-upload-icon">📷</div>
+                            <div class="photo-upload-text">Cliquez pour ajouter</div>
+                            <img id="photoPreview" alt="Preview">
+                        </label>
+                        <input type="file" id="userPhoto" accept="image/*">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>✉️ Votre Message Personnalisé (Optionnel)</label>
+                    <textarea id="userMessage" placeholder="Écrivez votre message magique pour vos amis...\n\nExemple: Que cette nouvelle année t'apporte tout le bonheur que tu mérites ! Merci pour tous ces beaux moments partagés. 🎉✨"></textarea>
+                    <p style="text-align: center; margin-top: 0.5rem; font-size: 0.85rem; color: rgba(255, 255, 255, 0.5);">
+                        Si vide, un message par défaut sera utilisé
+                    </p>
+                </div>
+                
+                <button class="btn" onclick="submitWishes()"><span>🎁 Créer & Partager</span></button>
+            </div>
+
+            <!-- Section de partage -->
+            <div id="shareSection" class="share-section">
+                <p class="share-title">🎊 Votre Lien Magique</p>
+                <div class="share-link" id="shareLink"></div>
+                <button class="btn" onclick="copyLink()"><span>📋 Copier</span></button>
+            </div>
+
+            <!-- Panel Admin -->
+            <div id="adminPanel" class="admin-panel">
+                <div class="admin-title">🎵 Panel Admin - Musique</div>
+                
+                <!-- Option 1: Upload depuis ordinateur -->
+                <div style="margin-bottom: 2rem; padding: 1.5rem; background: rgba(0, 0, 0, 0.2); border-radius: 15px; border: 1px solid rgba(255, 215, 0, 0.2);">
+                    <p style="text-align: center; color: rgba(255, 215, 0, 0.9); margin-bottom: 1rem; font-weight: 600; font-size: 1.1rem;">
+                        📂 Option 1: Depuis votre ordinateur
+                    </p>
+                    <div style="text-align: center;">
+                        <label for="musicFile" class="btn" style="cursor: pointer; display: inline-block; margin: 0;">
+                            <span>📁 Choisir un fichier audio</span>
+                        </label>
+                        <input type="file" id="musicFile" accept="audio/*" style="display: none;">
+                        <p id="fileName" style="margin-top: 1rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6);"></p>
+                    </div>
+                </div>
+                
+                <!-- Option 2: URL en ligne -->
+                <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: rgba(0, 0, 0, 0.2); border-radius: 15px; border: 1px solid rgba(255, 215, 0, 0.2);">
+                    <p style="text-align: center; color: rgba(255, 215, 0, 0.9); margin-bottom: 1rem; font-weight: 600; font-size: 1.1rem;">
+                        🌐 Option 2: URL en ligne
+                    </p>
+                    <input type="url" id="musicUrl" placeholder="https://example.com/music.mp3" style="margin-bottom: 1rem;">
+                    <button class="btn" onclick="updateMusicFromUrl()" style="width: 100%; margin: 0;"><span>🎶 Charger depuis URL</span></button>
+                </div>
+                
+                <div class="music-player">
+                    <audio id="bgMusic" controls autoplay muted loop></audio>
+                </div>
+                <p id="musicStatus" style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.7);"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Créer des particules flottantes
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        let currentData = { name: '', photoUrl: '' };
+        
+        // Compresser une image au MAXIMUM (150px, bonne qualité visuelle)
+        function compressImage(file, maxWidth = 150, quality = 0.55) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width;
+                        let height = img.height;
+                        
+                        if (width > maxWidth) {
+                            height = (height * maxWidth) / width;
+                            width = maxWidth;
+                        }
+                        
+                        canvas.width = width;
+                        canvas.height = height;
+                        
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        
+                        // JPEG ultra-compressé
+                        const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+                        resolve(compressedDataUrl);
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+        
+        // Générer un ID court unique
+        function generateShortId() {
+            return Date.now().toString(36) + Math.random().toString(36).substring(2, 7);
+        }
+        
+        // Sauvegarder dans localStorage avec ID
+        function saveToStorage(id, data) {
+            try {
+                const storage = JSON.parse(localStorage.getItem('wishes2026') || '{}');
+                storage[id] = {
+                    name: data.name,
+                    photo: data.photoUrl,
+                    message: data.message || '',
+                    date: Date.now()
+                };
+                // Nettoyer les anciens (> 30 jours)
+                const now = Date.now();
+                Object.keys(storage).forEach(key => {
+                    if (now - storage[key].date > 30 * 24 * 60 * 60 * 1000) {
+                        delete storage[key];
+                    }
+                });
+                localStorage.setItem('wishes2026', JSON.stringify(storage));
+                return true;
+            } catch (e) {
+                console.error('Erreur de stockage:', e);
+                return false;
+            }
+        }
+        
+        // Récupérer depuis localStorage
+        function loadFromStorage(id) {
+            try {
+                const storage = JSON.parse(localStorage.getItem('wishes2026') || '{}');
+                return storage[id] || null;
+            } catch (e) {
+                return null;
+            }
+        }
+        
+        // Ultra-compresser avec zlib
+        function encodeWishData(data) {
+            try {
+                const obj = {
+                    n: data.name,
+                    m: data.message || '',
+                    p: data.photoUrl || ''
+                };
+                
+                // Stringify sans espaces
+                const json = JSON.stringify(obj);
+                
+                // Compression zlib
+                const compressed = pako.deflate(json);
+                
+                // Base64 URL-safe (très compact)
+                let b64 = btoa(String.fromCharCode.apply(null, compressed));
+                return b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+            } catch (e) {
+                console.error('Erreur encodage:', e);
+                return null;
+            }
+        }
+        
+        // Ultra-décompresser
+        function decodeWishData(encoded) {
+            try {
+                let b64 = encoded.replace(/-/g, '+').replace(/_/g, '/');
+                while (b64.length % 4) b64 += '=';
+                const binary = atob(b64);
+                const bytes = new Uint8Array(binary.length);
+                for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+                const decompressed = pako.inflate(bytes, { to: 'string' });
+                const obj = JSON.parse(decompressed);
+                return { name: obj.n, message: obj.m || '', photo: obj.p || null };
+            } catch (e) {
+                console.error('Erreur décodage:', e);
+                return null;
+            }
+        }
+        
+        // Gérer l'upload de fichier audio local
+        document.getElementById('musicFile').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const statusElement = document.getElementById('musicStatus');
+                const fileNameElement = document.getElementById('fileName');
+                
+                // Afficher le nom du fichier
+                fileNameElement.textContent = '📄 ' + file.name;
+                fileNameElement.style.color = '#00f2fe';
+                
+                statusElement.textContent = '⏳ Chargement du fichier...';
+                statusElement.style.color = '#feca57';
+                
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const audioData = event.target.result;
+                    
+                    // Sauvegarder dans localStorage
+                    localStorage.setItem('musicData', audioData);
+                    localStorage.setItem('musicFileName', file.name);
+                    localStorage.removeItem('musicUrl'); // Supprimer l'URL si elle existe
+                    
+                    // Charger dans le lecteur
+                    const audio = document.getElementById('bgMusic');
+                    audio.src = audioData;
+                    audio.muted = false; // Retirer le mute
+                    audio.volume = 0.3;
+                    
+                    audio.play().then(() => {
+                        statusElement.textContent = '✅ ' + file.name + ' chargé et en lecture !';
+                        statusElement.style.color = '#00f2fe';
+                    }).catch((error) => {
+                        statusElement.textContent = '✅ Fichier chargé ! Cliquez sur play dans le lecteur';
+                        statusElement.style.color = '#00f2fe';
+                    });
+                };
+                reader.onerror = function() {
+                    statusElement.textContent = '❌ Erreur lors du chargement du fichier';
+                    statusElement.style.color = '#ff6b9d';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Preview photo immédiat avec animation et compression maximale
+        document.getElementById('userPhoto').addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                // Afficher l'aperçu immédiat
+                const preview = document.getElementById('photoPreview');
+                preview.src = URL.createObjectURL(file);
+                document.getElementById('photoUploadContainer').classList.add('photo-preview-active');
+                
+                // Compresser au MAXIMUM en arrière-plan
+                try {
+                    const compressed = await compressImage(file, 150, 0.55);
+                    currentData.photoUrl = compressed;
+                } catch (e) {
+                    console.error('Erreur de compression:', e);
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        currentData.photoUrl = event.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+
+        // Charger les données depuis l'URL
+        function loadData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const encodedData = urlParams.get('d');
+            
+            if (encodedData) {
+                // Décoder les données depuis l'URL
+                const wishData = decodeWishData(encodedData);
+                
+                if (wishData) {
+                    currentData.name = wishData.name;
+                    currentData.photoUrl = wishData.photo;
+                    currentData.message = wishData.message;
+                    displayWishView(wishData.name, wishData.photo, wishData.message);
+                } else {
+                    // Erreur de décodage
+                    document.getElementById('senderPreview').textContent = 'Créez vos vœux magiques';
+                }
+            } else {
+                // Mode création
+                document.getElementById('senderPreview').textContent = 'Créez vos vœux magiques';
+            }
+        }
+        
+        // Fonction pour formater le message avec style
+        function formatWishMessage(message) {
+            if (!message) {
+                // Message par défaut si aucun message personnalisé
+                return `
+                    🌟 <strong>Bonne Année 2026 !</strong> 🌟<br><br>
+                    Que cette nouvelle année t'apporte <strong>joie</strong>, <strong>succès</strong> et <strong>bonheur infini</strong>.<br>
+                    Que tous tes <strong>rêves</strong> se réalisent et que chaque jour soit rempli de <strong>magie</strong> ✨<br><br>
+                    <em>Avec toute mon affection</em> 💖
+                `;
+            }
+            
+            // Formatter le message personnalisé
+            let formatted = message;
+            
+            // Remplacer les emojis courants et mots-clés par du texte en gras
+            const keywords = ['bonheur', 'joie', 'succès', 'amour', 'amitié', 'santé', 'prospérité', 'rêve', 'rêves', 'magie', 'magique', '2026', 'année', 'nouvelle année', 'bonne année'];
+            
+            keywords.forEach(keyword => {
+                const regex = new RegExp(`\\b(${keyword})\\b`, 'gi');
+                formatted = formatted.replace(regex, '<strong>$1</strong>');
+            });
+            
+            // Ajouter des emojis si pas présents
+            if (!formatted.includes('🌟') && !formatted.includes('✨') && !formatted.includes('🎉')) {
+                formatted = '✨ ' + formatted + ' ✨';
+            }
+            
+            // Convertir les retours à la ligne en <br>
+            formatted = formatted.replace(/\n/g, '<br>');
+            
+            return `<div class="wishes-custom">${formatted}</div>`;
+        }
+        
+        // Fonction pour afficher la vue des vœux reçus
+        function displayWishView(name, photoUrl, message) {
+            // Afficher la vue "réception des vœux"
+            document.getElementById('recipientForm').style.display = 'none';
+            document.getElementById('senderInfo').style.display = 'block';
+            document.getElementById('senderPreview').textContent = name + ' vous souhaite';
+            document.getElementById('senderName').textContent = name;
+            
+            // Afficher le message formaté
+            document.getElementById('wishesMessage').innerHTML = formatWishMessage(message);
+            
+            if (photoUrl) {
+                document.getElementById('senderPhoto').src = photoUrl;
+            } else {
+                // Avatar par défaut avec initiale
+                const initial = name.charAt(0).toUpperCase();
+                document.getElementById('senderPhoto').src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ff6b9d;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23c471f5;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='200' height='200' fill='url(%23grad)'/%3E%3Ctext x='100' y='125' font-family='Arial,sans-serif' font-size='100' font-weight='bold' fill='white' text-anchor='middle'%3E${initial}%3C/text%3E%3C/svg%3E`;
+            }
+            
+            // Jouer la musique si disponible
+            playMusic();
+        }
+
+        // Soumettre les vœux
+        function submitWishes() {
+            const name = document.getElementById('userName').value.trim();
+            if (!name) {
+                alert('⚠️ Veuillez entrer votre nom !');
+                return;
+            }
+
+            currentData.name = name;
+            currentData.message = document.getElementById('userMessage').value.trim();
+            
+            // La photo est déjà compressée dans currentData.photoUrl
+            generateShareLink();
+        }
+
+        // Générer le lien de partage avec données encodées
+        function generateShareLink() {
+            // Générer un ID court pour localStorage
+            const wishId = generateShortId();
+            
+            // Sauvegarder dans localStorage (pour l'expéditeur)
+            saveToStorage(wishId, currentData);
+            
+            // Encoder les données dans l'URL (pour les destinataires)
+            const encodedData = encodeWishData(currentData);
+            
+            // Créer le lien avec les données encodées
+            const params = new URLSearchParams();
+            params.append('d', encodedData);
+            
+            const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+            document.getElementById('shareLink').textContent = shareUrl;
+            document.getElementById('shareSection').style.display = 'block';
+            document.getElementById('recipientForm').style.display = 'none';
+            
+            // Animation de scroll
+            setTimeout(() => {
+                document.getElementById('shareSection').scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'nearest' 
+                });
+            }, 100);
+        }
+
+        // Copier le lien avec feedback visuel
+        function copyLink() {
+            const linkText = document.getElementById('shareLink').textContent;
+            navigator.clipboard.writeText(linkText).then(() => {
+                const btn = event.target.closest('.btn');
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<span>✅ Copié !</span>';
+                btn.style.background = 'linear-gradient(135deg, #00f2fe, #4facfe)';
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.style.background = '';
+                }, 2000);
+            }).catch(() => {
+                // Fallback pour anciens navigateurs
+                alert('📋 Copiez ce lien : ' + linkText);
+            });
+        }
+
+        // Mettre à jour la musique depuis URL
+        function updateMusicFromUrl() {
+            const url = document.getElementById('musicUrl').value.trim();
+            const statusElement = document.getElementById('musicStatus');
+            const audio = document.getElementById('bgMusic');
+            
+            if (!url) {
+                statusElement.textContent = '⚠️ Veuillez entrer une URL';
+                statusElement.style.color = '#ff6b9d';
+                return;
+            }
+            
+            // Vérifier si c'est une URL valide
+            try {
+                new URL(url);
+            } catch (e) {
+                statusElement.textContent = '❌ URL invalide';
+                statusElement.style.color = '#ff6b9d';
+                return;
+            }
+            
+            // Sauvegarder et charger la musique
+            localStorage.setItem('musicUrl', url);
+            localStorage.removeItem('musicData'); // Supprimer le fichier local si il existe
+            localStorage.removeItem('musicFileName');
+            audio.src = url;
+            audio.volume = 0.3;
+            
+            statusElement.textContent = '⏳ Chargement...';
+            statusElement.style.color = '#feca57';
+            
+            audio.play().then(() => {
+                statusElement.textContent = '✅ Musique chargée et en lecture !';
+                statusElement.style.color = '#00f2fe';
+            }).catch((error) => {
+                statusElement.textContent = '❌ Erreur: ' + error.message + ' (Cliquez sur play dans le lecteur)';
+                statusElement.style.color = '#ff6b9d';
+                console.error('Erreur audio:', error);
+            });
+        }
+
+        // Jouer la musique automatiquement
+        function playMusic() {
+            const audio = document.getElementById('bgMusic');
+            const statusElement = document.getElementById('musicStatus');
+            
+            // Vérifier d'abord si un fichier local existe
+            const musicData = localStorage.getItem('musicData');
+            const musicFileName = localStorage.getItem('musicFileName');
+            
+            if (musicData) {
+                // Charger depuis fichier local
+                audio.src = musicData;
+                audio.volume = 0.3;
+                document.getElementById('fileName').textContent = '📄 ' + musicFileName;
+                document.getElementById('fileName').style.color = '#00f2fe';
+                audio.play().catch(() => {
+                    statusElement.textContent = '🔇 Cliquez sur play pour démarrer la musique';
+                    statusElement.style.color = '#feca57';
+                });
+            } else {
+                // Sinon, charger depuis URL
+                const musicUrl = localStorage.getItem('musicUrl');
+                if (musicUrl) {
+                    const musicInput = document.getElementById('musicUrl');
+                    audio.src = musicUrl;
+                    musicInput.value = musicUrl;
+                    audio.volume = 0.3;
+                    audio.play().catch(() => {
+                        statusElement.textContent = '🔇 Cliquez sur play pour démarrer la musique';
+                        statusElement.style.color = '#feca57';
+                    });
+                }
+            }
+        }
+
+        // Initialisation
+        loadData();
+
+        // Effet de clic avec des étincelles
+        document.addEventListener('click', (e) => {
+            const spark = document.createElement('div');
+            spark.style.position = 'fixed';
+            spark.style.left = e.clientX + 'px';
+            spark.style.top = e.clientY + 'px';
+            spark.style.width = '10px';
+            spark.style.height = '10px';
+            spark.style.borderRadius = '50%';
+            spark.style.background = 'radial-gradient(circle, #fff, transparent)';
+            spark.style.pointerEvents = 'none';
+            spark.style.animation = 'spark 0.6s ease-out forwards';
+            spark.style.zIndex = '9999';
+            document.body.appendChild(spark);
+            
+            setTimeout(() => spark.remove(), 600);
+        });
+
+        // Animation des étincelles
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spark {
+                0% { 
+                    transform: scale(1); 
+                    opacity: 1; 
+                }
+                100% { 
+                    transform: scale(3) rotate(180deg); 
+                    opacity: 0; 
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
